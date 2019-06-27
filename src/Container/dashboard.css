@@ -1,0 +1,27 @@
+.acc
+{
+    float: right;
+}
+
+
+
+#buttonRotate{
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+#cardheader{
+    display: flex;
+    align-content: space-between;
+}
+#cardheader .downbutton{
+    flex-grow: 1;
+    text-align: left !important;
+}
+#cardheader .iconee{
+    color: black
+}
+.card button{
+    padding: 0;
+}

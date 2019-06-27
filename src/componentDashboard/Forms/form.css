@@ -1,0 +1,25 @@
+#formbtn
+{
+    text-align: center;
+    margin-top: 25px;
+}
+#formbtn .btn1
+{
+    padding: 10px;
+    margin-right: 60px;
+    background: linear-gradient(-143deg,#e04f38 0%,#e95a2f 69%,#f16525 100%)!important;
+    color: white;
+    width: 90px;
+    border-radius: 100px;
+    margin-top: 10px;
+    
+}
+#formbtn .btn2
+{
+    padding: 10px;
+    background: linear-gradient(-143deg,#e04f38 0%,#e95a2f 69%,#f16525 100%)!important;
+    color: white;
+    width: 90px;
+    border-radius: 100px;
+    margin-top: 10px;
+}
