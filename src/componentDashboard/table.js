@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "../../node_modules/antd/dist/antd.css";
-import { Table, Button,Input } from "antd";
+import { Table, Button,Input,Modal,Drawer } from "antd";
 import { array } from "prop-types";
 import { format } from "util";
-import { Drawer } from "material-ui";
+// import { Drawer } from "material-ui";
 
 
 const { Search } = Input
@@ -19,14 +19,15 @@ class TableDash extends Component {
         loading: false,
         row:[],
         sortedInfo: '',
-        visible:false
+        visible:false,
+        modalVisible: false,
       };
     }
    
   }
-  setModalVisible=()=>{
-   
-  }
+  setModalVisible(modalVisible) {
+    this.setState({ modalVisible });
+}
   
   handleChange = ( sorter) => {
     console.log('Various parameters', sorter);
@@ -75,7 +76,7 @@ class TableDash extends Component {
         render: (AccountingID) => {
             return (
                 <span className="OpenTicket">
-                    <img onClick={() => this.setModalVisible} src="https://datasupport.beerboard.com/images/ticket.png" alt="OpenTickit"  style={{width:'35px'}}/>
+                    <img onClick={() => this.setModalVisible(true)} src="https://datasupport.beerboard.com/images/ticket.png" alt="OpenTickit"  style={{width:'35px'}}/>
                 </span>
             )
         }
@@ -150,6 +151,27 @@ class TableDash extends Component {
           dataSource={this.props.tabledata}
           size='small'
         />
+        <Drawer
+                        title="OPEN TICKET DETAILS"
+                        placement="right"
+                      
+                        visible={this.state.modalVisible}
+                        onOk={() => this.setModalVisible(false)}
+                        onCancel={() => this.setModalVisible(false)}
+                        onClose={() => this.setModalVisible(false)}>
+                        <p>Customer Location</p>
+                        <p></p>
+                        <p>POURED SOLD </p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                        <p>some contents...</p>
+                    </Drawer>
       </div>
     );
   }
