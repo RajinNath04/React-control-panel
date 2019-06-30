@@ -22,8 +22,7 @@ export default class InputAnalysis extends Component {
   }
 
   inputValue(e){
-    console.log(e)
-    this.props.locations(e);
+    this.props.analysis(e);
   
   
   }

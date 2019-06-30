@@ -10,7 +10,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       Data: [],
-      filter: []
+      filtered: ''
     };
   }
   componentDidMount() {
@@ -20,7 +20,8 @@ class Dashboard extends Component {
         this.setState(
           {
             Data: json,
-            filter: json
+            filtered: ''
+
           }
         )
         // console.log(this.state.Filtered)
@@ -29,24 +30,27 @@ class Dashboard extends Component {
 
 
   }
-  // filerOption(type, data) {
-  //   let search = this.state.Dataing.filter((item) => {
-  //     return item.Location.indexOf(type) > -1 && item.Type.indexOf(data) > -1
-  //   })
-  //   this.setState({
-  //     filtered: search
-  //   })
-
-  // }
-  btnClicked = (item) => {
-    return this.state.Data.map((item) => {
-      return (
-        <div key={item.LocationID}>
-          <div>{item.Location}</div>
-        </div>
-      )
+  filerOption(Dat, Loc, typ, ana) {
+    debugger
+    let search = this.state.Data.filter((item) => {
+      // console.log(item.Location,item.Type,item.ReportedDate);
+      return item.Location.indexOf(Loc) > -1 && item.Type.indexOf(typ) > -1 && item.ReportedDate.indexOf(Dat) > -1
+    })
+    // console.log(search);
+    this.setState({
+      filtered: search
     })
   }
+
+  // btnClicked = (item) => {
+  //   return this.state.Data.map((item) => {
+  //     return (
+  //       <div key={item.LocationID}>
+  //         <div>{item.Location}</div>
+  //       </div>
+  //     )
+  //   })
+  // }
   render() {
     const { activeIndex } = this.state;
     return (
@@ -61,10 +65,10 @@ class Dashboard extends Component {
             }}
 
           >
-            <Filterbar cliked={this.btnClicked} />
+            <Filterbar cliked={(Dat, Loc, typ, ana) => this.filerOption(Dat, Loc, typ, ana)} />
           </Col>
           <Col lg={8} style={{ marginTop: "-28px" }}>
-            <TableDash tabledata={this.state.filter} />
+            <TableDash tabledata={this.state.filtered} />
 
           </Col>
         </Row>

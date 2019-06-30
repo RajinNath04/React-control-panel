@@ -184,7 +184,7 @@ export default class InputSelect extends Component {
     return (
 
       <div>
-        <Select   onChange={(e)=>this.inputValue(e)}
+        <Select    onChange={(e)=>this.inputValue(e)}
     showSearch
     style={{ width: "100%" }}
     placeholder="Select"

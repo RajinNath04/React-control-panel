@@ -40,8 +40,11 @@ class Filterbar extends Component {
         }
     }
 
-    inputs(loc,ana){
-console.log(loc,ana);
+    inputs(Dat, Loc, typ, ana) {
+        this.props.cliked(Dat, Loc, typ, ana)
+    }
+    change(e) {
+        window.location.reload();
     }
     render() {
         return (
@@ -65,7 +68,7 @@ console.log(loc,ana);
                         </Accordion.Toggle>
 
                         <Accordion.Collapse >
-                            <Card.Body><Form INPUTS={(loc,ana)=>this.inputs(loc,ana)}/></Card.Body>
+                            <Card.Body><Form INPUTS={(Dat, Loc, typ, ana) => this.inputs(Dat, Loc, typ, ana)} onChange={(e) => this.change(e)} /></Card.Body>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>

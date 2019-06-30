@@ -33,6 +33,9 @@ export default class InputType extends Component {
     })
   }
 
+  inputValue(e){
+    this.props.type(e)
+  }
 
 
    onSearch = (val)=> {
@@ -43,7 +46,7 @@ export default class InputType extends Component {
     return (
 
       <div>
-        <Select
+        <Select  onChange={(e)=>this.inputValue(e)}
     showSearch
     style={{ width: "100%" }}
     placeholder="Select "
@@ -53,8 +56,8 @@ export default class InputType extends Component {
     }
   >
     
-    <Option value="L1">L1 Queue</Option>
-    <Option value="L2">L2 Queue</Option>
+    <Option value="L1 Queue">L1 Queue</Option>
+    <Option value="L2 Queue">L2 Queue</Option>
 
   </Select>
       </div>
