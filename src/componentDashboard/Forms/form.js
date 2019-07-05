@@ -69,7 +69,7 @@ submit(e){
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Date</Form.Label>
             <br />
-            <DatePicker style={{ width: "100%" }} name="DatePicker"  placeholder="Select" format="YYYY/DD/MM" onChange={(date,dateString)=>this.inputDatePicker(date,dateString)}/>
+            <DatePicker style={{ width: "100%" }} name="DatePicker"  placeholder="Select" format="YYYY-MM-DD" onChange={(date,dateString)=>this.inputDatePicker(date,dateString)}/>
          </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Location</Form.Label>

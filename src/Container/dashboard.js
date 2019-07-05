@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import "./dashboard.css";
 import Filterbar from "../componentDashboard/filterbar";
 import TableDash from '../componentDashboard/table'
@@ -31,7 +31,7 @@ class Dashboard extends Component {
 
   }
   filerOption(Dat, Loc, typ, ana) {
-    debugger
+  
     let search = this.state.Data.filter((item) => {
       // console.log(item.Location,item.Type,item.ReportedDate);
       return item.Location.indexOf(Loc) > -1 && item.Type.indexOf(typ) > -1 && item.ReportedDate.indexOf(Dat) > -1
@@ -55,23 +55,25 @@ class Dashboard extends Component {
     const { activeIndex } = this.state;
     return (
       <div style={{ marginTop: '90px' }}>
-        <Row className="mt-3">
+      
+        <Row>
           <Col
-            lg={3}
+            sm={3}
             style={{
-              marginLeft: "40px",
+              marginLeft: "15px", 
               marginBottom: "5px",
-              marginTop: "25px"
+              
             }}
 
           >
             <Filterbar cliked={(Dat, Loc, typ, ana) => this.filerOption(Dat, Loc, typ, ana)} />
           </Col>
-          <Col lg={8} style={{ marginTop: "-28px" }}>
+          <Col sm={8} style={{ marginTop: "-51px",maxWidth:'70% !important' }}>
             <TableDash tabledata={this.state.filtered} />
 
           </Col>
         </Row>
+        
       </div>
     );
   }

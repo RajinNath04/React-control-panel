@@ -64,12 +64,13 @@
 //with promises
 import React, { Component } from 'react';
 
-import AsyncSelect from 'react-select/async';
+// import AsyncSelect from 'react-select/async';
 import { Select } from 'antd';
 
 import '../../../node_modules/antd/dist/antd.css'
 // import { colourOptions } from '../data';
 const URL_HOME = 'http://localhost:3004/Data'
+const _=require('underscore')
 
 // const colourOptions = [
 //   { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
@@ -151,7 +152,8 @@ export default class InputSelect extends Component {
       .then(json => {
         this.setState(
           {
-            filter: json,
+            
+filter: _.uniq(json, true, _.iteratee('Location')) ,
             data:json
           }
         ) 
@@ -184,7 +186,7 @@ export default class InputSelect extends Component {
     return (
 
       <div>
-        <Select    onChange={(e)=>this.inputValue(e)}
+        <Select  onChange={(e)=>this.inputValue(e)}
     showSearch
     style={{ width: "100%" }}
     placeholder="Select"

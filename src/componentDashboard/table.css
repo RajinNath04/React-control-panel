@@ -2,3 +2,55 @@
 {
     width: 370px !important
 }
+.analysis
+{
+    background-color: #f8962b!important;
+    border-radius: 10px;
+    padding: 3px;
+    color: white;
+    margin-left: -47px;
+}
+.ant-drawer-header
+{
+    background-color: #cd5025!important;
+    color: white
+}
+.ant-drawer-title,.ant-drawer-close
+{
+    color: white
+}
+.ant-drawer-close:hover
+{
+    color: white
+}
+.ant-drawer-close:focus
+{
+    border-color: #cd5025!important;
+}
+.create:focus
+{
+    background: linear-gradient(-143deg,#e04f38 0%,#e95a2f 69%,#f16525 100%)!important;
+    color: white;
+    border-color:  #f8962b!important
+    
+}
+.create
+{
+    padding: 0px 30px;
+    background: linear-gradient(-143deg,#e04f38 0%,#e95a2f 69%,#f16525 100%)!important;
+    color: white;
+    border-color:  #f8962b!important
+}
+.clear
+{
+    padding: 0px 30px;
+}
+.clear:focus
+{
+    color: black;
+    border-color: black!important
+}
+.ant-table-thread
+{
+    background-color: #cd5025!important;
+}

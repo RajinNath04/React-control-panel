@@ -67,7 +67,7 @@ class Filterbar extends Component {
 
                         </Accordion.Toggle>
 
-                        <Accordion.Collapse >
+                        <Accordion.Collapse eventKey="0">
                             <Card.Body><Form INPUTS={(Dat, Loc, typ, ana) => this.inputs(Dat, Loc, typ, ana)} onChange={(e) => this.change(e)} /></Card.Body>
                         </Accordion.Collapse>
                     </Card>

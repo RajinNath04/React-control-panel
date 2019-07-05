@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../node_modules/antd/dist/antd.css";
 import "./table.css";
-import { Table, Button, Input, Modal, Drawer,Radio} from "antd";
+import { Table, Button, Input, Modal, Drawer,Radio , Popover} from "antd";
 //import { array } from "prop-types";
 //import { format } from "util";
 //import { faBold } from "@fortawesome/free-solid-svg-icons";
@@ -24,8 +24,10 @@ class TableDash extends Component {
         sortedInfo: '',
         modalVisible: false,
         selectedData: '',
-        value:''
-
+        value:'',
+        subject:'',
+        textarea:'',
+        random:''
       };
     }
 
@@ -44,12 +46,12 @@ class TableDash extends Component {
     })
   }
 
-  handleChange = (sorter) => {
-    console.log('Various parameters', sorter);
-    this.setState({
-      sortedInfo: sorter,
-    });
-  }
+  // handleChange = (sorter) => {
+  //   console.log('Various parameters', sorter);
+  //   this.setState({
+  //     sortedInfo: sorter,
+  //   });
+  // }
 
   start = () => {
     this.setState({ loading: true });
@@ -73,11 +75,50 @@ class TableDash extends Component {
     });
   };
 
+  cleared=()=>
+  {
+    this.setState({
+      subject:'',
+      textarea:'',
+      value:''
+    })
+
+  }
+  onHandleChange=(e)=>
+  {
+    this.setState({
+      subject:e.target.value,
+    })
+    console.log(this.state.subject)
+  }
+
+  onHandleChangetext=(e)=>
+  {
+    this.setState({
+      textarea:e.target.value
+    })
+    console.log(this.state.textarea)
+  }
+  
+  handleClickRandom=()=>
+  {
+    const min=1000000000000;
+    const max=9999999999999;
+    const rand=min+ Math.random() * (max-min)
+    const rand1=Math.round(rand)
+    this.setState({
+      random:this.state.random+rand1,
+      modalVisible:false
+    })
+    console.log(this.state.random)
+  }
+
+
 
   render() {
-    console.log(this.props.tabledata)
+    
     let { sortedInfo, loading, selectedRowKeys } = this.state;
-    sortedInfo = sortedInfo || {};
+   // sortedInfo = sortedInfo || {};
     const columns = [
       {
         title: '',
@@ -109,45 +150,71 @@ class TableDash extends Component {
         key: "Location",
         sorter: (a, b) => a.Location.length - b.Location.length,
         sortDirections: ['descend', 'ascend'],
-        sortOrder: sortedInfo.columnKey === 'Location' && sortedInfo.order,
+        
+       
       },
       {
         title: "Poured",
         dataIndex: "Poured",
         key: "Poured",
-        sorter: (a, b) => a.Poured.length - b.Poured.length,
-        sortOrder: sortedInfo.columnKey === 'Poured' && sortedInfo.order,
+        sorter: (a, b) => a.Poured - b.Poured,
+        sortDirections: ['descend', 'ascend']
       },
       {
         title: "Sold",
         dataIndex: "Sold",
-        key: "Sold"
+        key: "Sold",
+        sorter: (a, b) => a.Sold - b.Sold,
+        sortDirections: ['descend', 'ascend']
       },
       {
         title: "Variance",
         dataIndex: "Variance",
-        key: "Variance"
+        key: "Variance",
+        sorter: (a, b) => a.Variance - b.Variance,
+        sortDirections: ['descend', 'ascend']
       },
       {
         title: "Date",
         dataIndex: "ReportedDate",
         key: "ReportedDate",
-
-
       },
       {
         title: "Ticket ID",
         dataIndex: "TicketID",
-        key: "TicketID"
+        key: "TicketID",
+        render:()=>
+        {
+          return(
+            <span>
+              {this.state.random}
+            </span>
+          )
+        }
       },
       {
         title: "Line Cleaning",
         dataIndex: "LineCleaning",
         key: "LineCleaning"
+      },
+      {
+        title:'',
+        dataIndex:'',
+        key:'',
+        render:()=>
+        {
+          return(
+            
+           <span  className="analysis" style={{backgroundColor:'#f8962b!important'}}>
+          NEED ANALYSIS
+           </span>
+            
+          )
+        }
       }
     ];
 
-    console.log(data)
+   
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange
@@ -156,25 +223,30 @@ class TableDash extends Component {
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
-          <Button type="danger" shape="round" onClick={this.start}>
-            ANALYSED
+          <Button type="danger" shape="round" onClick={this.start} onChange={this.analysed} disabled>
+          NEED ANALYSIS
           </Button>
-          <Button type="danger" shape='round' style={{ marginLeft: '10px' }}>
-            NEED ANALYSIS 
+          <Button type="danger" shape='round' style={{ marginLeft: '10px' }} disabled={!hasSelected}>
+             ANALYSED 
           </Button>
           <span style={{ marginLeft: 8 }}> 
             {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
           </span>
           <Search placeholder="Search Customer Location" onSearch={value => console.log(value)} enterButton style={{ width: '30%', float: 'right' }} />
         </div>
+        
         <Table style={{ height: '50%' }}
           rowSelection={rowSelection}
           columns={columns}
           dataSource={this.props.tabledata}
           size='small'
         />
+        
+
+        
+     
         <Drawer style={{width:"350px"}}
-          title="OPEN TICKET DETAILS"
+          title="OPEN TICKET DETAILS" 
           placement="right"
           
           visible={this.state.modalVisible}
@@ -221,18 +293,18 @@ class TableDash extends Component {
          <br/>
          Subject
          <br/>
-         <Input placeholder="Subject" style={{marginTop:'5px'}} required/>
+         <Input id="subject" type="text" placeholder="Subject" onChange={this.onHandleChange} value={this.state.subject} style={{marginTop:'5px'}}  required/>
          </p>
          <p style={{marginLeft:'10px'}}>
          Message
          <br/>
-         <TextArea rows={8} placeholder="Write your description here [max 200 characters]" required/>
+         <TextArea rows={8} id="textarea" type="text" onChange={this.onHandleChangetext} value={this.state.textarea} placeholder="Write your description here [max 200 characters]"  required/>
          </p>
          <p style={{textAlign:'center'}}>
-         <Button type="danger" shape="round" style={{marginRight:'10px'}}>
+         <Button  shape="round" style={{marginRight:'10px'}} type="submit" onClick={this.cleared} className="clear">
           CLEAR
         </Button>
-        <Button type="danger" shape="round">
+        <Button  shape="round" className="create" onClick={this.handleClickRandom}>
           CREATE
         </Button>
          </p>
