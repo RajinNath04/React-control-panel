@@ -22,7 +22,7 @@
     "react-dom": "^16.8.6",
     "react-responsive-accordion": "^1.0.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-select": "^3.0.4",
     "semantic-ui-react": "^0.87.2",
     "wow.js": "^1.2.2"
